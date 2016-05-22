@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+	<data>
+		<!-- Formulario view_invoice_line_form heredado mas campos nuevos -->
+		<record model="ir.ui.view" id="view_invoice_line_form_view_inh_pa">
+			<field name="name">view.invoice.line.form.view.inh_pa</field>
+			<field name="model">account.invoice.line</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account.view_invoice_line_form" />
+			<field name="arch" type="xml">
+
+				<field name="account_analytic_id" position="after">
+					<field name="codigo_phase_id" widget="many2many_tags"
+						placeholder="Seleccione Fase de Proyecto" />
+				</field>
+				<field name="quantity" position="before">
+					<field name="codigo_categoria" placeholder="Seleccione Categoría de Proyecto" options='{"no_open": True}'/>
+				</field>
+
+				<!-- para reempalzar campos por uno nuevo <field name="campoareemplazar" 
+					position="after"> <field name="nuevocampo" /> </field> -->
+			</field>
+		</record>
+
+		<!-- Formulario account.invoice.supplier.form heredado mas campos nuevos -->
+		<record model="ir.ui.view" id="invoice_supplier_form_view_inh_pa">
+			<field name="name">account.invoice.supplier.form.view.inh_pa</field>
+			<field name="model">account.invoice</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account.invoice_supplier_form" />
+			<field name="arch" type="xml">
+				<data>
+					<field name="product_id" position="replace" />
+					<field name="sequence" position="after">
+						<field name="product_id"
+							on_change="product_id_change(product_id, uos_id, quantity, name, parent.type, parent.partner_id, parent.fiscal_position, price_unit, parent.currency_id, parent.company_id, context)" />
+						<!-- <field name="product_id" on_change="account_anexos.product_id_change2(product_id, 
+							uos_id, quantity, name, parent.type, parent.partner_id, parent.fiscal_position, 
+							price_unit, parent.currency_id, parent.company_id, context)" placeholder="Item?"/> -->
+					</field>
+
+					<field name="account_analytic_id" position="after">
+						<field name="codigo_phase_id" widget="many2many_tags"
+							placeholder="Seleccione fase de Proyecto" />
+					</field>
+					<field name="quantity" position="before">
+						<field name="codigo_categoria" placeholder="Seleccione Categoría de Proyecto" options='{"no_open": True}'/>
+					</field>
+
+				</data>
+			</field>
+		</record>
+
+
+		<!-- Formulario: vista proyecto fase form hererado -->
+		<record id="view_project_phase_form_inh_pa" model="ir.ui.view">
+			<field name="name">project.phase.form.inh_pa</field>
+			<field name="model">project.phase</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="project_long_term.view_project_phase_form" />
+			<field name="arch" type="xml">
+				<field name="project_id" position="after">
+					<field name="codigo_phase_id" placeholder="Escriba Fase de Proyecto" />
+				</field>
+			</field>
+		</record>
+
+	</data>
+</openerp>
