@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+	<data>
+		<!-- Vista Arbol-->
+		<record id="anexos_conceptos_tree" model="ir.ui.view">
+			<field name="name">anexos.conceptos.tree</field>
+			<field name="model">anexos.conceptos</field>
+			<field name="arch" type="xml">
+				<tree string="Lista de Conceptos de Anexos (Panamá)">
+					<field name="name"/>
+					<field name="concepto"/>
+					<field name="codigo_tipo_pago"/>
+					<field name="anexo"/>
+				</tree>	
+			</field>
+		</record>
+		<!-- Vista Formulario -->
+		<record id="anexos_conceptos_form" model="ir.ui.view">
+			<field name="name">anexos.conceptos.form</field>
+			<field name="model">anexos.conceptos</field>
+			<field name="arch" type="xml">
+				<form string="Formulario de Conceptos de Anexos (Panamá)">
+					<header>
+						<field name="anexo"/>
+					</header>
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="concepto"/>
+							<field name="codigo_tipo_pago"/>
+							<field name="anexo"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>
+		</record>
+		<!-- Acciones -->
+		<record id="anexos_conceptos_action" model="ir.actions.act_window">
+			<field name="name">Conceptos de Anexos</field>
+			<field name="res_model">anexos.conceptos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<!-- Menúes -->
+		<menuitem id="anexos.conceptos" parent="anexos" name "CONCEPTOS DE ANEXOS" sequence="0"/>
+		<menuitem id="anexos.conceptos" parent="anexos" name "CONCEPTOS DE ANEXOS" sequence="0"
+		action="anexos_conceptos_form"/>
+	</data>
+</openerp>
